@@ -1,4 +1,4 @@
-package com.hrishikesh.practices.graph;
+// package com.hrishikesh.practices.graph;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-import static com.hrishikesh.practices.graph.LongestPathInDAGWithWeight.Graph;
-import static com.hrishikesh.practices.graph.LongestPathInDAGWithWeight.getLongestPath;
+// import static com.hrishikesh.practices.graph.LongestPathInDAGWithWeight.Graph;
+// import static com.hrishikesh.practices.graph.LongestPathInDAGWithWeight.getLongestPath;
 
 /**
  * Problem:

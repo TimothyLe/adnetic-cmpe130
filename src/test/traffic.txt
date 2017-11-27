@@ -1,0 +1,7 @@
+//Name of Website and traffic of website per hour
+Macys, Fashion			160
+Best Buy, Electronics	250
+Nike, Shoes			    80
+Adidas, Shoes			55
+Frys, Electronics		348
+JCPenny, Fashion		120
