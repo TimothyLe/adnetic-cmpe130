@@ -6,16 +6,27 @@
 #include <sstream>
 using namespace std;
 
-class Website {
+class WebParse {
 public:
-	Website(string webName);
+	WebParse(string webName);
+	~WebParse();
 	string getWeb();
 	string getAdj();
 	int getWeight();
+
+	friend ostream& operator<<(ostream& os, const WebParse& wp);
+	friend istream& operator>>(istream& is, const WebParse& wp);
+	
+	bool operator==(const WebParse& wp) const;
+	bool operator!=(const WebParse& wp) const;
+	bool operator>=(const WebParse& wp) const;
+	bool operator<=(const WebParse& wp) const;
+	bool operator>(const WebParse& wp) const;
+	bool operator<(const WebParse& wp) const;
 private:
 	string web;
-	string adj;
-	int weight;
+	string adj[];
+	int weight[];
 };
 
 #endif

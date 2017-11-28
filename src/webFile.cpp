@@ -1,21 +1,34 @@
 #include "webFile.h"
 using namespace std;
 
-WebFile::WebFile(string filePath){
-	ifstream wFile(filePath);
-	string data;
+
+WebFile::WebFile(string filePath, int len){
+	WebParse wp; 
+	int webweight;
+	ifstream wFile;
+	string dummy, data;
+	wFile.open(filePath.c_str());
 	if(wFile.fail()){
 		cout << "Error! File does not found\n";
-		return -1;
+		exit(1);
 	}
+	getline(wFile, dummy);
 	while(!wFile.eof()){
-
+		for(int i = 0; i < len; i++){
+			getline(wFile, wp.web, ',');
+			getline(wFile, wp.adj[i], ',');
+			getline(wFile, wp.weight[i], ',');
+			data = data.substr(0, data.find(','));
+			if(isdigit(data[])){
+                istringstream iss(data);
+                int weight;
+                while(iss >> wp.weight){
+                    wp.weight[i]=webweight;
+                }
+        	}
+		}
 	}
 	wFile.close();
-	sort(students.begin(), students.end(), [](Student &s1, Student &s2)
-    										{
-                                                return s1.getGPA() > s2.getGPA();
-                                            });
 }	
 WebParse WebFile::getWebsites(){
 	return webs.at(0);

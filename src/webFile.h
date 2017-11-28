@@ -11,7 +11,7 @@ using namespace std;
 
 class WebFile {
 public:
-	WebFile(string filePath);
+	WebFile(string filePath, int len);
 	
 	WebParse getWebsites();
 	list<WebParse> getAdjacents();
