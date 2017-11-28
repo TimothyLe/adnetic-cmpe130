@@ -2,21 +2,19 @@
 #include <iostream>
 #include <list>
 #include <stack>
-#include <string>
 #include <limits.h>
 #define NINF INT_MIN
 using namespace std;
-#inc
 // Graph is represented using adjacency list. Every node of adjacency list
 // contains vertex number of the vertex to which edge connects. It also
 // contains weight of the edge
 class AdjListNode
 {
-    string name;
+    int v;
     int weight;
 public:
-    AdjListNode(string _n, int _w)  { name = _n;  weight = _w;}
-    string getV()       {  return name;  }
+    AdjListNode(int _v, int _w)  { v = _v;  weight = _w;}
+    int getV()       {  return v;  }
     int getWeight()  {  return weight; }
 };
  
@@ -34,7 +32,7 @@ public:
     Graph(int V);   // Constructor
  
     // function to add an edge to graph
-    void addEdge(int u, string n, int weight);
+    void addEdge(int u, int v, int weight);
  
     // Finds longest distances from given source vertex
     void longestPath(int s);
@@ -46,11 +44,22 @@ Graph::Graph(int V) // Constructor
     adj = new list<AdjListNode>[V];
 }
  
-void Graph::addEdge(int u, string n, int weight)
+void Graph::addEdge(int u, int v, int weight)
 {
-    AdjListNode node(n, weight);
+    AdjListNode node(v, weight);
     adj[u].push_back(node); // Add v to u's list
 }
+
+// lookup the index of a name
+        int lookup(const char name[]) const {
+            for(int i = 0; i < count; i++) {
+                if(strcmp(names[i], name) == 0) {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
  
 // A recursive function used by longestPath. See below link for details
 // http://www.geeksforgeeks.org/topological-sorting/
@@ -125,16 +134,16 @@ int main()
     // 0, 1, 2, 3, 4, 5 with following mappings:
     // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z
     Graph g(6);
-    g.addEdge(0, "Test", 5);
-    g.addEdge(1, "Test", 3);
-    g.addEdge(2, "Test", 6);
-    g.addEdge(3, "Test", 2);
-    g.addEdge(4, "Test", 4);
-    g.addEdge(5, "Test", 2);
-    g.addEdge(6, "Test", 7);
-    g.addEdge(7, "Test", 1);
-    g.addEdge(8, "Test", -1);
-    g.addEdge(9, "Test", -2);
+    g.addEdge(0, 1, 5);
+    g.addEdge(0, 2, 3);
+    g.addEdge(1, 3, 6);
+    g.addEdge(1, 2, 2);
+    g.addEdge(2, 4, 4);
+    g.addEdge(2, 5, 2);
+    g.addEdge(2, 3, 7);
+    g.addEdge(3, 5, 1);
+    g.addEdge(3, 4, -1);
+    g.addEdge(4, 5, -2);
  
     int s = 1;
     cout << "Following are longest distances from source vertex " << s <<" \n";
