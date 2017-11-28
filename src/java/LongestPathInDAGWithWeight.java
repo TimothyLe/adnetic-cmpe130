@@ -38,7 +38,7 @@ import java.util.Stack;
  * @video https://www.youtube.com/watch?v=nu88oy8U0Vo
  * @video https://www.youtube.com/watch?v=lRH0tax5dFA
  */
-public class LongestPathInDAGWithWeight {
+public class LongestPathInDAGWithWeight extends Graph{
 
     public static class AdjacentNode {
         private Integer vertex;
@@ -56,41 +56,41 @@ public class LongestPathInDAGWithWeight {
     }
 
 
-    public static class Graph {
-        private int numberOfVertices;
-        private List<AdjacentNode> adjacencyLists[];
+    // public static class Graph {
+    //     private int numberOfVertices;
+    //     private List<AdjacentNode> adjacencyLists[];
 
-        public Graph(int numberOfVertices) {
-            this.numberOfVertices = numberOfVertices;
-            init(numberOfVertices);
-        }
+    //     public Graph(int numberOfVertices) {
+    //         this.numberOfVertices = numberOfVertices;
+    //         init(numberOfVertices);
+    //     }
 
-        private void init(int numberOfVertices) {
-            adjacencyLists = (List<AdjacentNode>[]) Array.newInstance(List.class, numberOfVertices);
+    //     private void init(int numberOfVertices) {
+    //         adjacencyLists = (List<AdjacentNode>[]) Array.newInstance(List.class, numberOfVertices);
 
-            for (int i = 0; i < numberOfVertices; i++) {
-                adjacencyLists[i] = new LinkedList<>();
-            }
-        }
+    //         for (int i = 0; i < numberOfVertices; i++) {
+    //             adjacencyLists[i] = new LinkedList<>();
+    //         }
+    //     }
 
-        public void addEdge(int source, int destination, int weight) {
-            AdjacentNode adjacentNode = new AdjacentNode(destination, weight);
-            adjacencyLists[source].add(adjacentNode);
-        }
+    //     public void addEdge(int source, int destination, int weight) {
+    //         AdjacentNode adjacentNode = new AdjacentNode(destination, weight);
+    //         adjacencyLists[source].add(adjacentNode);
+    //     }
 
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < numberOfVertices; i++) {
-                sb.append(i + " -> " + adjacencyLists[i] + "\n");
-            }
-            return sb.toString();
-        }
+    //     @Override
+    //     public String toString() {
+    //         StringBuilder sb = new StringBuilder();
+    //         for (int i = 0; i < numberOfVertices; i++) {
+    //             sb.append(i + " -> " + adjacencyLists[i] + "\n");
+    //         }
+    //         return sb.toString();
+    //     }
 
-        public int getNumberOfVertices() {
-            return numberOfVertices;
-        }
-    }
+    //     public int getNumberOfVertices() {
+    //         return numberOfVertices;
+    //     }
+    // }
 
     public static class TopologicalSort {
 

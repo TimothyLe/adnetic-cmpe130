@@ -12,12 +12,18 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	ifstream ifs("test\\adsAPI (1).dat", ios::in); //open a file for reading
-    ofstream ofs("parseOut.dat", ios::out); //open a file for output
+	ifstream ifs;
+    ifs.open("test\\adsAPI (1).dat", ios::in); //open a file for reading
+    ofstream ofs;
+    ofs.open("parseOut.dat", ios::out); //open a file for output
     string dum,data;
     if(ifs.fail()){
         cout << "Error! File not found!" << endl;
         exit(1);
+    }
+    if(!ofs){
+        cerr << "cannot open \"parseOut.dat\" for output\n";
+        return -1;
     }
     getline(ifs, dum); //dummy data 1 line
     while(!ifs.eof()){
@@ -29,5 +35,5 @@ int main(int argc, char const *argv[])
         ofs << data << endl;
     }
     ifs.close();
-	return 0;
+	return -1;
 }

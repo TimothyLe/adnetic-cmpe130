@@ -91,77 +91,81 @@ void Graph::longestPath(int s, string obj[])
     for (int i = 0; i < V; i++)
         if (visited[i] == false)
             topologicalSortUtil(i, visited, Stack);
-        
+    
     // Initialize distances to all vertices as infinite and distance
     // to source as 0
-        for (int i = 0; i < V; i++)
-            dist[i] = NINF;
-        dist[s] = 0;
-        
+    for (int i = 0; i < V; i++)
+        dist[i] = NINF;
+    dist[s] = 0;
+    
     // Process vertices in topological order
-        while (Stack.empty() == false)
-        {
+    while (Stack.empty() == false)
+    {
         // Get the next vertex from topological order
-            int u = Stack.top();
-            Stack.pop();
-            
+        int u = Stack.top();
+        Stack.pop();
+        
         // Update distances of all adjacent vertices
-            list<AdjListNode>::iterator i;
-            if (dist[u] != NINF)
-            {
-                for (i = adj[u].begin(); i != adj[u].end(); ++i)
-                    if (dist[i->getV()] < dist[u] + i->getWeight())
-                        dist[i->getV()] = dist[u] + i->getWeight();
-                }
-            }
-            
-    // Print the calculated longest distances
-            for (int i = 0; i < V; i++)
-                (dist[i] == NINF)? cout << "INF ": cout << dist[i] << " ";
+        list<AdjListNode>::iterator i;
+        if (dist[u] != NINF)
+        {
+            for (i = adj[u].begin(); i != adj[u].end(); ++i)
+                if (dist[i->getV()] < dist[u] + i->getWeight())
+                    dist[i->getV()] = dist[u] + i->getWeight();
         }
+    }
+    
+    // Print the calculated longest distances
+    for (int i = 0; i < V; i++)
+        (dist[i] == NINF)? cout << "INF ": cout << dist[i] << " ";
+}
 
 // Driver program to test above functions
-        int main()
-        {
+int main()
+{
     // Create a graph given in the above diagram.  Here vertex numbers are
     // 0, 1, 2, 3, 4, 5 with following mappings:
     // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z
-            int webweight[6];
-            string webname[6];
-            string adjwebname[6];
-            string delimiter = ",";
-            ifstream ifs;
-            ifs.open("adsAPI.dat");
-            string dummyline,data;
-            if(ifs.fail()){
-                cout << "Error! File not found!" << endl;
-                exit(1);
-            }
-            int k = 0;
-            data = data.substr(0, data.find(delimiter));
-            for(int i=0; i<1; i++){
-                getline(ifs, dummyline);
-            }
-            while(!ifs.eof()){
-                
-                for(int i = 0; i< 6; i++)
-                {
-                    getline(ifs, webname[i], ',');
-                    getline(ifs, adjwebname[i], ',');
-                    if(isdigit(data[0])){
-                        istringstream iss(data);
-                        int weight;
-                        while(iss >> weight){
-                            webweight[i]=weight;
-                        }}
-                        
-                        Graph g(6);
-                        g.addEdge(webname, adjwebname, webweight);
-                        
-                        
-                        int s = 1;
-                        cout << "Following are longest distances from source vertex " << s <<" \n";
-                        g.longestPath(s);
-                        
-                        return 0;
-                    }
+    int webweight[10];
+    string webname[10];
+    string adjwebname[10];
+    ifstream ifs;
+    ifs.open("test\\adsAPI.dat");
+    string dummyline,data;
+    if(ifs.fail()){
+        cout << "Error! File not found!" << endl;
+        exit(1);
+    }
+    for(int i=0; i<1; i++){
+        getline(ifs, dummyline);
+    }
+    while(!ifs.eof()){
+        
+        for(int i = 0; i< 10; i++)
+        {
+            getline(ifs, webname[i], ',');
+            getline(ifs, adjwebname[i], ',');
+            getline(ifs, data);
+            data = data.substr(0, data.find(','));
+            if(isdigit(data[0])){
+                istringstream iss(data);
+                int weight;
+                while(iss >> weight){
+                    webweight[i]=weight;}
+        }
+       }
+        for(int i = 0; i< 10; i++){
+        cout<<webname[i]<<endl;
+        cout<<adjwebname[i]<<endl;
+        cout<<webweight[i]<<endl;}
+    // Graph g(6);
+    // g.addEdge(webname, adjwebname, webweight);
+   
+    
+    // int s = 1;
+    // cout << "Following are longest distances from source vertex " << s <<" \n";
+    // g.longestPath(s,webname);
+    
+    return 0;
+    }
+}

@@ -38,6 +38,8 @@ class HashTable
     HashNode **hTable;
 
     void display();
+    string findMax(string);
+    
     HashTable()
             //clearing the hash table
             {
@@ -112,20 +114,84 @@ void HashTable:: display()
     
 }
 
+int find_key(string k)
+{
+    char copy[50];
+    int key;
+    int sum=0;
+    int length = k.length();
+    
+    strcpy(copy, k.c_str());
+    
+    
+    for(int i =0; i<length; i++)
+    {
+              sum += int(copy[i]);
+        
+    }
+    
+    key = sum / 100;
+    
+    return key;
+}
+
+string HashTable:: findMax(string categoryIn)
+{
+    HashNode *list = NULL;
+    HashNode *ptr = NULL;
+    string max;
+    string max_name;
+    
+    int key = find_key(categoryIn);
+    
+    for(int i = 0; i< 20; i++)
+    {
+        list = hTable[key];
+    }
+    
+    max = list->value;
+    max_name = list->name;
+    
+    if(list!=NULL)
+    {
+        if(list->next != NULL)
+        {
+            ptr = list ->next;
+            
+                if(ptr->value > max)
+                {
+                    max = ptr->value;
+                    max_name = ptr -> name;
+                }
+                
+                else
+                    while(ptr->next != NULL)
+                    {
+                        ptr = ptr ->next;
+                    }
+            }
+        }
+    
+
+    return max_name;
+}
+
 // main program
 int main() {
     
     string nameOfSite[50];
     string category1[15];
+    string value[50];
+    string max;
     char category[15];
     int sum[50];
-    string value[50];
     int key[50];
+    int length;
     
     HashTable hash;
     
     ifstream inFile;
-    inFile.open("test\\traffic.txt", ios::in);
+    inFile.open("traffic.txt");
     
     while(inFile.good())
     {
@@ -141,8 +207,9 @@ int main() {
         for(int a = 0; a < 6 ; a++)
         {
             strcpy(category, category1[a].c_str());
+            length = category1[a].length();
             
-            for(int i =0; i< 12; i++)
+            for(int i =0; i< length; i++)
             {
                 sum[a] += int(category[i]);
                 category[i] = 0;
@@ -154,6 +221,10 @@ int main() {
         }
     
     hash.display();
+    
+    max = hash.findMax(category1[3]);
+    
+    cout<<"The most Valuable of " <<category1[3]<<" is "<< max<<endl;
     
     inFile.close();
     
