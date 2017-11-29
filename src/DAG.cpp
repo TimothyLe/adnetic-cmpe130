@@ -7,11 +7,16 @@
 #include <list>
 #include <stack>
 #include <limits.h>
+#include <ctime>
 #define NINF INT_MIN
 using namespace std;
 // Graph is represented using adjacency list. Every node of adjacency list
 // contains vertex number of the vertex to which edge connects. It also
 // contains weight of the edge
+
+static const int AMOUNT = 6;
+static const int MAX = 10;
+
 class AdjListNode
 {
     int v;
@@ -20,6 +25,7 @@ public:
     AdjListNode(int _v, int _w)  { v = _v;  weight = _w;}
     int getV()       {  return v;  }
     int getWeight()  {  return weight; }
+    
 };
 
 // Class to represent a graph using adjacency list representation
@@ -34,12 +40,14 @@ class Graph
     void topologicalSortUtil(int v, bool visited[], stack<int> &Stack);
 public:
     Graph(int V);   // Constructor
+    int count = 0;
     
     // function to add an edge to graph
     void addEdge(int u, int v, int weight);
     
     // Finds longest distances from given source vertex
     void longestPath(int s, string obj[]);
+    
 };
 
 Graph::Graph(int V) // Constructor
@@ -51,8 +59,9 @@ Graph::Graph(int V) // Constructor
 void Graph::addEdge(int u, int v, int weight)
 {
     AdjListNode node(v, weight);
-    adj[u].push_back(node); // Add v to u's list
+    adj[u].push_back(node);
 }
+
 
 // A recursive function used by longestPath. See below link for details
 // http://www.geeksforgeeks.org/topological-sorting/
@@ -91,81 +100,124 @@ void Graph::longestPath(int s, string obj[])
     for (int i = 0; i < V; i++)
         if (visited[i] == false)
             topologicalSortUtil(i, visited, Stack);
-    
+
     // Initialize distances to all vertices as infinite and distance
     // to source as 0
-    for (int i = 0; i < V; i++)
-        dist[i] = NINF;
-    dist[s] = 0;
-    
+        for (int i = 0; i < V; i++)
+            dist[i] = NINF;
+        dist[s] = 0;
+
     // Process vertices in topological order
-    while (Stack.empty() == false)
-    {
-        // Get the next vertex from topological order
-        int u = Stack.top();
-        Stack.pop();
-        
-        // Update distances of all adjacent vertices
-        list<AdjListNode>::iterator i;
-        if (dist[u] != NINF)
+        while (Stack.empty() == false)
         {
-            for (i = adj[u].begin(); i != adj[u].end(); ++i)
-                if (dist[i->getV()] < dist[u] + i->getWeight())
-                    dist[i->getV()] = dist[u] + i->getWeight();
-        }
-    }
-    
+        // Get the next vertex from topological order
+            int u = Stack.top();
+            Stack.pop();
+
+        // Update distances of all adjacent vertices
+            list<AdjListNode>::iterator i;
+            if (dist[u] != NINF)
+            {
+                for (i = adj[u].begin(); i != adj[u].end(); ++i)
+                    if (dist[i->getV()] < dist[u] + i->getWeight())
+                        dist[i->getV()] = dist[u] + i->getWeight();
+                }
+            }
+
     // Print the calculated longest distances
-    for (int i = 0; i < V; i++)
-        (dist[i] == NINF)? cout << "INF ": cout << dist[i] << " ";
-}
+            for (int i = 0; i < V; i++)
+                (dist[i] == NINF)? cout << "INF ": cout << max(dist[i], dist[i++]) << " ";
+        }
+//int printDAG(int u, int v, int webweight,string webname[],string adjwebname){;}
+
+//Monotonic sequence
+        void shuffle(int *arr, size_t n)
+        {
+            if (n > 1) 
+            {
+                size_t i;
+                srand(time(NULL));
+                for (i = 0; i < n - 1; i++) 
+                {
+                  size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
+                  int t = arr[j];
+                  arr[j] = arr[i];
+                  arr[i] = t;
+              }
+          }
+      }
 
 // Driver program to test above functions
-int main()
-{
+      int main()
+      {
+        srand( static_cast<unsigned int>(time(NULL)));
     // Create a graph given in the above diagram.  Here vertex numbers are
     // 0, 1, 2, 3, 4, 5 with following mappings:
     // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z
-    int webweight[10];
-    string webname[10];
-    string adjwebname[10];
-    ifstream ifs;
-    ifs.open("test\\adsAPI.dat");
-    string dummyline,data;
-    if(ifs.fail()){
-        cout << "Error! File not found!" << endl;
-        exit(1);
-    }
-    for(int i=0; i<1; i++){
-        getline(ifs, dummyline);
-    }
-    while(!ifs.eof()){
-        
-        for(int i = 0; i< 10; i++)
-        {
-            getline(ifs, webname[i], ',');
-            getline(ifs, adjwebname[i], ',');
-            getline(ifs, data);
-            data = data.substr(0, data.find(','));
-            if(isdigit(data[0])){
-                istringstream iss(data);
-                int weight;
-                while(iss >> weight){
-                    webweight[i]=weight;}
+        int webweight[10];
+        string webname[10];
+        string adjwebname[10];
+        ifstream ifs;
+        ifs.open("test\\adsAPI (1).dat");
+        string dummyline,data;
+        if(ifs.fail()){
+            cout << "Error! File not found!" << endl;
+            exit(1);
         }
-       }
-        for(int i = 0; i< 10; i++){
-        cout<<webname[i]<<endl;
-        cout<<adjwebname[i]<<endl;
-        cout<<webweight[i]<<endl;}
-    // Graph g(6);
-    // g.addEdge(webname, adjwebname, webweight);
-   
-    
-    // int s = 1;
-    // cout << "Following are longest distances from source vertex " << s <<" \n";
-    // g.longestPath(s,webname);
-    
-    return 0;
+        for(int i=0; i<1; i++){
+            getline(ifs, dummyline);
+        }
+        while(!ifs.eof()){
+
+            for(int i = 0; i< 10; i++)
+            {
+                getline(ifs, webname[i], ',');
+                getline(ifs, adjwebname[i], ',');
+                getline(ifs, data);
+                data = data.substr(0, data.find(','));
+                if(isdigit(data[0])){
+                    istringstream iss(data);
+                    int weight;
+                    while(iss >> weight){
+                        webweight[i]=weight;}
+                    }
+                }
+
+                int rand_arr[AMOUNT-1] = {0};
+                for(int i = 1; i < AMOUNT-1; i++) rand_arr[i] = i;
+                    shuffle(rand_arr, AMOUNT-1);
+
+                int i, count_web, count_adj,count = 0;
+                Graph g(6);
+                for(i = 0; i< MAX; i++){
+
+                    if(webname[i]=="Facebook") count_web = 0;
+            else if(webname[i]=="Snapchat")count_web = rand_arr[1]; // random number between 0-4, then add one for 1-5
+            else if(webname[i]=="Twitter")count_web= rand_arr[2]; // random number between 0-4, then add one for 1-5
+            else if(webname[i]=="Instagram")count_web= rand_arr[3]; // random number between 0-4, then add one for 1-5
+            else if(webname[i]=="WhatsApp")count_web= rand_arr[4]; // random number between 0-4, then add one for 1-5
+            else count_web= 5; // random number between 0-4, then add one for 1-5
+            
+            cout << webname[i] << " " << count_web << " ";
+            
+            if(adjwebname[i]=="Facebook") count_adj = 0;
+            else if(adjwebname[i]=="Snapchat")count_adj=count_web;
+            else if(adjwebname[i]=="Twitter")count_adj=count_web;
+            else if(adjwebname[i]=="Instagram")count_adj=count_web;
+            else if(adjwebname[i]=="WhatsApp")count_adj=count_web;
+            else count_adj=count_web;
+            
+            cout << adjwebname[i] << " " << count_adj << endl;
+
+            count=webweight[i];
+
+            cout<< count<<endl;
+            
+            g.addEdge(count_web, count_adj,count);
+        }
+        int s = 1;
+        cout << "Following are longest distances from source vertex " << s <<" \n";
+        g.longestPath(s,webname);
+        return 0;
     }
 }

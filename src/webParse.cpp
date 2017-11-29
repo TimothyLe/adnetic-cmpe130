@@ -2,57 +2,61 @@
 
 using namespace std;
 
-WebParse::WebParse(string webName){
-    stringstream webstream(webName);
-    webstream >> web;
-    webstream >> adj;
-    webstream >> weight;
+WebParse::WebParse(int size, string websiteName){
+    w.web = websiteName;
+    w.weight = new int[size];
+    w.adj = new string[size];
+}
+
+WebParse::~WebParse(){
+	delete [] w.weight;
+	delete [] w.adj;
 }
 
 string WebParse::getWeb(){
-    return web;
+    return w.web;
 }
 
-string WebParse::getAdj(){
-    return adj;
+string& WebParse::getAdj(){ //pass-by reference
+    return *w.adj;
 }
 
-int WebParse::getWeight(){
-    return weight;
+int& WebParse::getWeight(){ //pass-by reference
+    return *w.weight;
 }
 
-friend ostream& operator<<(ostream& os, const WebParse& wp){
-	os << "Website: " << wp.web.c_str() << " Adjacent: " << wp.adj.c_str() << " Weight: " << wp.weight;
+ostream& operator<<(ostream& os, const WebParse& wp){
+	os << "Website: " << wp.w.web.c_str() << " Adjacent: " << wp.w.adj.c_str() << " Weight: " << wp.w.weight;
 	return os;
 }
-friend istream& operator>>(istream& is, const WebParse& wp){
-	is >> wp.web;
-	is >> wp.adj;
-	is >> wp.weight;
+istream& operator>>(istream& is, const WebParse& wp){
+	is >> wp.w.web;
+	is >> wp.w.adj;
+	is >> wp.w.weight;
 	return is;
 }
 
 bool WebParse::operator==(const WebParse& wp) const{
-	return(weight == wp.weight);
+	return(w.weight == wp.w.weight);
 
 }
 bool WebParse::operator!=(const WebParse& wp) const{
-	return(weight != wp.weight);
+	return(w.weight != wp.w.weight);
 
 }
 bool WebParse::operator>=(const WebParse& wp) const{
-	return(weight >= wp.weight);
+	return(w.weight >= wp.w.weight);
 
 }
 bool WebParse::operator<=(const WebParse& wp) const{
-	return(weight <= wp.weight);
+	return(w.weight <= wp.w.weight);
 
 }
 bool WebParse::operator>(const WebParse& wp) const{
-	return(weight > wp.weight);
+	return(w.weight > wp.w.weight);
 
 }
 bool WebParse::operator<(const WebParse& wp) const{
-	return(weight < wp.weight);
+	return(w.weight < wp.w.weight);
 
 }

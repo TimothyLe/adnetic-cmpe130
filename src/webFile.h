@@ -3,13 +3,13 @@
 #define _WEB_FILE_
 
 #include <string>
-#include <list>
 #include <algorithm>
 #include <fstream>
 #include "webParse.h"
 using namespace std;
 
-class WebFile {
+
+class WebFile : public WebParse{
 public:
 	WebFile(string filePath, int len);
 	
