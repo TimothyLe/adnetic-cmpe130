@@ -1,7 +1,13 @@
-//Name of Website and traffic of website per hour
-Macys, Fashion			160
-Best Buy, Electronics	250
-Nike, Shoes			    80
-Adidas, Shoes			55
-Frys, Electronics		348
-JCPenny, Fashion		120
+WhatupChat, Social Media, 130
+Iphone, Devices, 250
+R2, Shoes, 80
+Google Pixle, Devices, 348
+MessageGuzun, Social Media, 120
+Camera Lm32, Devices, 212
+Jordan, Shoes, 93
+Texting4you, Social Media, 90
+MacbookPro, Devices, 214
+GbProMessage, Social Media, 184
+Yeezy, Shoes, 350
+AirMax, Shoes, 130
+GlobalChat, Social Media, 175

@@ -1,0 +1,12 @@
+//Adnetic Electronic Devices API User1
+Devices
+Best Buy, GameStop, 3
+Best Buy, Staples, 2
+GameStop, Staples, 3
+GameStop, Fry's, 5
+Staples, Fry's, 7
+Fry's, RadioShack, 4
+Fry's, Amazon, 10
+RadioShack, Amazon, 5
+Staples, RadioShack, 1
+GameStop, Amazon, 6

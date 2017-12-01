@@ -1,0 +1,14 @@
+//Adnetic Devices API test User2
+Devices
+Best Buy, GameStop, 4
+Best Buy, RadioShack, 2
+GameStop, Amazon, 7
+RadioShack, Staples, 1
+RadioShack, Fry's, 5
+Amazon, Fry's, 10
+Amazon, Staples, 3
+Fry's, Staples, 4
+Amazon, RadioShack, 2
+GameStop, Staples, 3
+
+
