@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "Graph.hpp"
 #define NINF INT_MIN
 
 
@@ -16,6 +16,7 @@ void Graph::addEdge(int u, int v, int weight)
 
 
 // A recursive function used by longestPath. See below link for details
+// http://www.geeksforgeeks.org/topological-sorting/
 void Graph::topologicalSortUtil(int v, bool visited[], stack<int> &Stack)
 {
     // Mark the current node as visited
