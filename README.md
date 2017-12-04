@@ -10,9 +10,9 @@ The Adnetic advertisement searching project for company websites developed in th
 
 ### For Windows users  
 (_make sure you have MinGW and GCC_)   
-Run `g++ -g -Wall .\main.cpp -o MAIN`  
-Then after compiling, you can reference the executable by calling `MAIN` or `.\MAIN.exe`  
-Standard output shall be displayed and you can call the .exe unlimited times afterwards  
+1. Run `g++ -g -Wall .\main.cpp -o MAIN`  
+2. Then after compiling, you can reference the executable by calling `MAIN` or `.\MAIN.exe`  
+3. Standard output shall be displayed and you can call the .exe unlimited times afterwards  
 
 ### For Mac users  
 (_Use XCode_)  
