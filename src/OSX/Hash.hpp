@@ -85,7 +85,6 @@ public:
         {
             in -> value = value;
         }
-        cout<<in->name<< " was inserted in key: "<< hashKey<<endl;
     }
     
 };

@@ -12,9 +12,9 @@
 #include <string>
 #include <cstdlib>
 #include <cstdio>
-
-#include "Hash.h"
+#include "Hash.hpp"
 #include "Graph.hpp"
+
 
 #define NINF INT_MIN
 
@@ -39,24 +39,24 @@ void shuffle(int *arr, size_t n)
 int ShuffleDAG(string array){
     int i=0;
     int count;
-    int arr[5];
-    for (i=0; i<5; i++){
-        arr[i] = i+1;
+    int arr[6];
+    for (i=0; i<6; i++){
+        arr[i] = i;
     }
     
-    shuffle(arr, 5);
+    shuffle(arr, 6);
     
     if (strcmp(array.c_str(),"StartingPoint")==0)
-        count= 0;
+        count= arr[0];
     else if(strcmp(array.c_str(),"Snapchat")==0)
-        count=arr[0];
-    else if(strcmp(array.c_str(),"Twitter")==0)
         count=arr[1];
-    else if(strcmp(array.c_str(),"Instagram")==0)
+    else if(strcmp(array.c_str(),"Twitter")==0)
         count=arr[2];
-    else if(strcmp(array.c_str(),"WhatsApp")==0)
+    else if(strcmp(array.c_str(),"Instagram")==0)
         count=arr[3];
-    else count=arr[4];
+    else if(strcmp(array.c_str(),"WhatsApp")==0)
+        count=arr[4];
+    else count=arr[5];
     
     return count;
 }
@@ -79,12 +79,6 @@ int main()
     
     inFile.open("traffic.txt");
     
-    if(inFile.fail())
-    {
-        cout << "Error! File not found!" << endl;
-        exit(1);
-    }
-    
     while(inFile.good())
     {
         for(int i = 0; i< 15; i++)
@@ -103,14 +97,11 @@ int main()
         }
     }
     
-    cout<<"--------------Hash Table-------------"<<endl;
-    cout<<endl;
-    
     //converting the categories to ascii values to find the key value on hash table
     for(int a = 0; a < 13 ; a++)
     {
         strcpy(category, category1[a].c_str());
-        length = category1[a].length();
+        length =(int) category1[a].length();
         
         for(int i =0; i< length; i++)
         {
@@ -122,8 +113,6 @@ int main()
         
         hash.insert(nameOfSite[a], key[a], val[a]);
     }
-    
-    cout<<endl;
     
     inFile.close();
     
@@ -139,37 +128,34 @@ int main()
         getline(ifs, categ);
     }
     
-        for(int i = 0; i<11; i++)
-        {
-            getline(ifs, webname[i], ',');
-            getline(ifs, adjwebname[i], ',');
-            getline(ifs, data);
-            data = data.substr(0, data.find(','));
-            if(isdigit(data[0])){
-                istringstream iss(data);
-                int weight;
-                while(iss >> weight){
-                    webweight[i]=weight;}
-            }
+    for(int i = 0; i<11; i++)
+    {
+        getline(ifs, webname[i], ',');
+        getline(ifs, adjwebname[i], ',');
+        getline(ifs, data);
+        data = data.substr(0, data.find(','));
+        if(isdigit(data[0])){
+            istringstream iss(data);
+            int weight;
+            while(iss >> weight){
+                webweight[i]=weight;}
         }
-
-
-        Graph g(6);
-    cout<<"-------adsAPISM File:------ "<<endl;
-    cout<<"Webname---Webvertex----adjacentWeb---adjVertex"<<endl;
-    cout<<endl;
-            for(int i = 0; i< 11; i++)
-            {
-                count_web[i] = ShuffleDAG(webname[i]);
-                count_adj[i] = ShuffleDAG(adjwebname[i]);
-         
-                cout<<webname[i]<<" "<<count_web[i]<<" "<<adjwebname[i]<<" "<<count_adj[i]<<endl;
+    }
+    
+    
+    Graph g(6);
+    
+    for(int i = 0; i< 11; i++)
+    {
+        count_web[i] = ShuffleDAG(webname[i]);
+        count_adj[i] = ShuffleDAG(adjwebname[i]);
         
-                g.addEdge(count_web[i], count_adj[i], webweight[i]);
-
-            }
         
-            maxVertex[0] = g.longestPath(0,webname);
+        g.addEdge(count_web[i], count_adj[i], webweight[i]);
+      
+    }
+    
+    maxVertex[0] = g.longestPath(0,webname);
     
     ifd.open("adsAPISM2.dat");
     if(ifd.fail()){
@@ -195,18 +181,14 @@ int main()
             }
         }
         
-        cout<<"-------adsAPISM2 File:-------"<<endl;
-        cout<<"Webname---Webvertex----adjacentWeb---adjVertex"<<endl;
-        cout<<endl;
         Graph g(6);
         for(int i = 0; i< 11; i++)
         {
             count_web2[i]= ShuffleDAG(webname2[i]);
             count_adj2[i]= ShuffleDAG(adjwebname2[i]);
             
-            cout<<webname2[i]<<" "<<count_web2[i]<<" "<<adjwebname2[i]<<" "<<count_adj2[i]<<endl;
-            
             g.addEdge(count_web2[i], count_adj2[i],webweight2[i]);
+            
         }
         
         int s=0;
@@ -215,8 +197,6 @@ int main()
         
         maxAd = hash.findMax(categ);
         
-        cout<<endl;
-        cout<<"The final output:"<<endl;
         cout<<"Ad "<<maxAd<<" will be displayed on";
         
         for(int i=0; i< 11; i++)
@@ -225,40 +205,34 @@ int main()
             {
                 if(count_web[i]  == maxVertex[0])
                 {
-                    cout<<" "<<webname[i];
-                    cout<<" from file adsAPISM.dat"<<endl;
+                    cout<<" "<<webname[i]<<endl;
                     break;
                 }
                 else
                     if(count_adj[i] == maxVertex[0])
                     {
-                        cout<< " "<<adjwebname[i];
-                        cout<<" from file adsAPISM.dat"<<endl;
+                        cout<< " "<<adjwebname[i]<<endl;
                         break;
                     }
-                
             }
             else if(maxVertex[1]>maxVertex[0])
             {
                 if(count_web2[i]  == maxVertex[1])
                 {
-                    cout<<" "<<webname2[i];
-                    cout<<" from file adsAPISM.dat"<<endl;
+                    cout<<" "<<webname2[i]<<endl;
                     break;
                 }
                 else
                     if(count_adj2[i] == maxVertex[1])
                     {
-                        cout<< " "<<adjwebname2[i];
-                        cout<<" from file adsAPISM.dat"<<endl;
+                        cout<< " "<<adjwebname2[i]<<endl;
                         break;
                     }
-            
             }
-
+            
         }
         
-        cout<<endl;
+        
         return 0;
     }
 }

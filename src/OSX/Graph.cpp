@@ -1,7 +1,12 @@
+//
+//  Graph.cpp
+//  Adnetic
+//
+//  Created by Kyle Ma on 11/30/17.
+//  Copyright © 2017 Kyle Ma. All rights reserved.
+//
 #include "Graph.hpp"
 #define NINF INT_MIN
-
-
 Graph::Graph(int V) // Constructor
 {
     this->V = V;
@@ -92,6 +97,7 @@ int Graph::longestPath(int s, string obj[])
             m=i;
         }
     }
-        
+    
+    
     return m;
 }

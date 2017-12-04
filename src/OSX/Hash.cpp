@@ -1,5 +1,4 @@
-#include "Hash.h"
-
+#include "Hash.hpp"
 #include <cstring>
 #include <iostream>
 #include <sstream>
@@ -96,4 +95,3 @@ string HashTable:: findMax(string categoryIn)
     }
     return max_name;
 }
-

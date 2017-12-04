@@ -11,5 +11,3 @@ GbProMessage, Social Media, 184
 Yeezy, Shoes, 350
 AirMax, Shoes, 130
 GlobalChat, Social Media, 175
-
-
