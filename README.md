@@ -15,7 +15,12 @@ The Adnetic advertisement searching project for company websites developed in th
 3. Standard output shall be displayed and you can call the .exe unlimited times afterwards  
 
 ### For Mac users  
-(_Use XCode_)  
+(_We used XCode which can be downlaoded from the App Store_)  
+1. Import scheme into `.xcodeproj`  
+2. Select the scheme  
+3. `Ctrl + B` to Build the scheme  
+4. `Ctrl + R` to Run the scheme
+5. Standard output will be displayed in the console window  
 
 ## References
 
