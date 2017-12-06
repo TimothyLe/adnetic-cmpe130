@@ -1,3 +1,6 @@
+#ifndef Graph_h
+#define Graph_h
+
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -12,10 +15,6 @@
 #include <cstdlib>
 #include <cstdio>
 
-#ifndef Graph_h
-#define Graph_h
-
-#include <stdio.h>
 using namespace std;
 
 class AdjListNode
@@ -47,7 +46,7 @@ public:
     void addEdge(int u, int v, int weight);
     
     // Finds longest distances from given source vertex
-    int longestPath(int s, string obj[]);
+    void longestPath(int s, string obj[]);
     
 };
 

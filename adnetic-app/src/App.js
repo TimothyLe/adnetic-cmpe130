@@ -8,11 +8,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">AdNetic</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          The Adnetic advertisement searching project for company websites developed in the CmpE 130 Advanced Algorithms course.
+          By Thinh Le, Kyle Ma, and Alondra Cabrera Ruiz
+        </p> 
       </div>
     );
   }

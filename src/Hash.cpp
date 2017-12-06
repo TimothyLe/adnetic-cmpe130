@@ -22,7 +22,7 @@ int find_key(string k)
     return key;
 }
 
-void HashTable:: display()
+void HashTable::display()
 {
     HashNode *myNode;
     
@@ -47,7 +47,7 @@ void HashTable:: display()
     
 }
 
-string HashTable:: findMax(string categoryIn)
+string HashTable::findMax(string categoryIn)
 {
     HashNode *list = NULL;
     HashNode *ptr = NULL;
