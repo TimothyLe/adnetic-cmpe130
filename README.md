@@ -6,7 +6,7 @@ The Adnetic advertisement searching project for company websites developed in th
 ## To compile
 1. Git clone this repository `git clone https://github.com/TimothyLe/adnetic-cmpe130.git`  
 2. Change to that directory `cd adnetic-cmpe130`  
-3. Change to the following directories `.\src\working-code\`  
+3. Change to the following directories `.\src\archive\working-code\`  
 
 ### For Windows users  
 (_make sure you have MinGW and GCC_)   
