@@ -36,7 +36,7 @@ void Graph::topologicalSortUtil(int v, bool visited[], stack<int> &Stack)
 
 // The function to find longest distances from a given vertex. It uses
 // recursive topologicalSortUtil() to get topological sorting.
-void Graph::longestPath(int s, string obj[])
+void Graph::longestPath(int s, int index, string obj[])
 {
     stack<int> Stack;
     int dist[V];
@@ -83,7 +83,7 @@ void Graph::longestPath(int s, string obj[])
     
     for ( i = 0; i < V; i++)
     {
-        //cout<<dist[i]<<" ";
+        cout<< string[i] << " " << dist[i] << endl;
         
         if(dist[i]>max)
         {
@@ -91,6 +91,5 @@ void Graph::longestPath(int s, string obj[])
             m=i;
         }
     }
-        
-    return m;
+    index = m;
 }

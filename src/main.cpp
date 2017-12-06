@@ -149,7 +149,7 @@ int main()
                 cout << "Weight: " << webweight[i] << endl;
             }
         
-            maxVertex[0] = g.longestPath(0,webname);
+            g.longestPath(0, maxVertex[0], webname);
     
     ifd.open("test\\adsAPISM2.dat");
     if(ifd.fail()){
@@ -188,7 +188,7 @@ int main()
         
         int s=0;
         
-        maxVertex[1] = g.longestPath(s,webname2);
+        g.longestPath(s, maxVertex[1], webname2);
         
         maxAd = hash.findMax(categ);
         

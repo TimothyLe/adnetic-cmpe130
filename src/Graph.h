@@ -46,7 +46,7 @@ public:
     void addEdge(int u, int v, int weight);
     
     // Finds longest distances from given source vertex
-    void longestPath(int s, string obj[]);
+    void longestPath(int s, int index, string obj[]);
     
 };
 
