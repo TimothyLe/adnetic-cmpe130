@@ -20,7 +20,10 @@ The Adnetic advertisement searching project for company websites developed in th
 2. Select the scheme  
 3. `Ctrl + B` to Build the scheme  
 4. `Ctrl + R` to Run the scheme
-5. Standard output will be displayed in the console window  
+5. Standard output will be displayed in the console window   
+
+### Expected output
+![AdNetic Results](https://github.com/TimothyLe/adnetic-cmpe130/blob/master/assets/img/output.png)
 
 ## References
 
